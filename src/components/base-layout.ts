@@ -70,6 +70,17 @@ export class BaseLayout extends LitElement {
         padding-right: 5px
       }
 
+      @media(max-width: 600px){
+        header {
+          flex-direction: column;
+        }
+
+        .title {
+          padding-left: 0;
+          margin-bottom: 10px
+        }
+      }
+
       .disclaimer {
         font-size: 8px;
         text-align: center;
@@ -93,6 +104,14 @@ export class BaseLayout extends LitElement {
     addEventListener('resize', () => { this.requestUpdate() })
   }
 
+  private themeToggle (): TemplateResult {
+    if (window.innerWidth <= 600) {
+      return html``
+    }
+
+    return html`<theme-toggle></theme-toggle>`
+  }
+
   protected render (): TemplateResult {
     return html`
       <div class="container">
@@ -107,7 +126,7 @@ export class BaseLayout extends LitElement {
             <li><a href="#rules">Rules</a></li>
             <li><a href="#signup">Signup</a></li>
             <li><a href="#where">Where</a></li>
-            <theme-toggle></theme-toggle>
+            ${this.themeToggle()}
           </ul>
         </header>
 
