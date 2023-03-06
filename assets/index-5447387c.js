@@ -124,17 +124,6 @@
         padding-right: 5px
       }
 
-      @media(max-width: 600px){
-        header {
-          flex-direction: column;
-        }
-
-        .title {
-          padding-left: 0;
-          margin-bottom: 10px
-        }
-      }
-
       .disclaimer {
         font-size: 8px;
         text-align: center;
