@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/logo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="dark light">
+    <title>cEDH Tournament</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css">
+    
+    <script type="module" src="/src/components/base-layout.ts"></script>
+    <script type="module" src="/src/components/theme-toggle.ts"></script>
+  </head>
+
+  <body>
+    <base-layout>
+
+    <div>
+      <section id="main" aria-label="main">
+        <div class="main-section-content">
+          <h1><span class="primary">cEDH</span> Tournament</h1>
+          <h3>in Haarlem (<span class="secondary-light">NL</span>)</h3>
+          <p>6th of June 2023</p>
+        </div>
+      </section>
+
+     <section id="rules" aria-label="rules" class="section-contrast">
+        <h1>Tournament Rules</h1>
+
+        <rule>
+          <h2>75 minutes per game</h2> 
+          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+        </rule>
+        
+        <rule>
+          <h2>No bullshit</h2>          
+          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+        </rule>
+
+        <rule>
+          <h2>Be friendly</h2>
+          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+        </rule>
+     </section>
+
+     <section id="signup" aria-label="signup" class="section-normal">
+      <h2>How do I signup?</h2>
+      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+     </section>
+
+     <section id="where" aria-label="where" class="section-normal">
+        <h2><span class="primary">Where?</span> Haarlem Spellenhuis</h2>
+        <p>Description and maps should go here</p>
+     </section>
+    </div>
+    </base-layout>
+  </body>
+
+
+  <script>
+    const theme = localStorage.getItem('cedh-tournament-theme')
+    const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)').matches
+
+    if (prefersDarkScheme && theme === 'light') document.body.classList.toggle('light-theme')
+    if (!prefersDarkScheme && theme === 'dark') document.body.classList.toggle('dark-theme') 
+  </script>
+</html>
