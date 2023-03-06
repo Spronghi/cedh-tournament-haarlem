@@ -47,7 +47,7 @@ export class BaseLayout extends LitElement {
         display: flex;
         flex-direction: column;
         align-items: center;
-        background-color: var(--highlight-color);
+        background-color: var(--primary-color);
         padding: 1em 0;
       }
 
@@ -105,7 +105,7 @@ export class BaseLayout extends LitElement {
   }
 
   private themeToggle (): TemplateResult {
-    if (window.innerWidth <= 500) {
+    if (window.innerWidth <= 600) {
       return html``
     }
 
@@ -118,14 +118,13 @@ export class BaseLayout extends LitElement {
         <header class="header">
           
           <section aria-label="title" class="title">
-            <img class="logo" src="/logo.png" />
+            <img class="logo" src="/cedh-tournament-haarlem/logo.png" />
             cEDH Tournament
           </section>
 
           <ul class="navbar">
-            <li><a href="#">Home</a></li>
-            <li><a href="#contact">Rules</a></li>
-            <li><a href="#how-to-signup">Signup</a></li>
+            <li><a href="#rules">Rules</a></li>
+            <li><a href="#signup">Signup</a></li>
             <li><a href="#where">Where</a></li>
             ${this.themeToggle()}
           </ul>

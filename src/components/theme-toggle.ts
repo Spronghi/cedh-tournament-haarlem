@@ -28,7 +28,7 @@ export class ThemeToggle extends LitElement {
 
   private getIconURL (): string {
     const icon = this.isDark() ? 'light' : 'dark'
-    return `/assets/${icon}-theme-icon.svg`
+    return `/cedh-tournament-haarlem/assets/${icon}-theme-icon.svg`
   }
 
   private getDefaultTheme (): Theme {
