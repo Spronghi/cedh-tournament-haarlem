@@ -1,108 +1,16 @@
-import { LitElement, html, css, type TemplateResult } from 'lit'
+import { LitElement, html, type TemplateResult } from 'lit'
+import { state } from 'lit/decorators.js'
+
+import styles from './styles/base-layout'
+
+import burgerIcon from '../icons/burger-icon'
 
 import { font } from './styles/commons'
 
 export class BaseLayout extends LitElement {
-  static styles = [
-    font('::host'),
-    css`
-      :host theme-toggle {
-        margin-left: 1em
-      }
+  static styles = [font('::host'), styles]
 
-      :host .header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 100%;
-        min-width: fit-content;
-        margin: 1em 0;
-      }
-
-      :host ul.navbar {
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-        display: flex;
-        align-items: center;
-      }
-
-      :host ul.navbar li {
-        min-width: max-content;
-      }
-
-      :host footer a {
-        color: white;
-      }
-
-      :host ul.navbar li + li {
-        border-left: solid var(--text-color) 1px;
-        padding-left: 10px;
-        margin-left: 10px;
-      }
-
-      :host footer ul.navbar li + li {
-        border-left: solid var(white) 1px;
-      }
-
-      :host footer {
-        width: 100%;
-        margin-top: 1em;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        color: white;
-        background-color: var(--primary-color);
-        padding: 1em 0;
-      }
-
-      :host .title {
-        padding-left: 1em;
-      }
-
-      :host header .navbar {
-        padding-right: 1em !important;
-      }
-
-      :host header section {
-        display: flex;
-        align-items: end;
-      }
-
-      :host header .logo {
-        width: 25px;
-        height: 25px;
-        padding-right: 5px
-      }
-
-      @media(max-width: 768px){
-        :host header {
-          flex-direction: column;
-        }
-
-        :host .title {
-          padding-left: 0;
-          margin-bottom: 10px
-        }
-      }
-
-      :host .disclaimer {
-        font-size: 8px;
-        text-align: center;
-        margin-top: 10px;
-        padding: 0 3em;
-      }
-
-      :host a {
-        color: var(--text-color);
-        text-decoration: none;
-      }
-
-      :host a:hover {
-        text-decoration: underline;
-      }
-    `
-  ]
+  @state() private burgerIcon = burgerIcon
 
   constructor () {
     super()
@@ -110,12 +18,46 @@ export class BaseLayout extends LitElement {
     addEventListener('resize', () => { this.requestUpdate() })
   }
 
-  private themeToggle (): TemplateResult {
-    if (window.innerWidth <= 768) {
+  private burgerIconClick (): void {
+    const isBurger = this.burgerIcon === burgerIcon
+
+    this.burgerIcon = isBurger ? html`<span class="x-icon">X</span>` : burgerIcon
+  }
+
+  private rightMenu (): TemplateResult {
+    const isBurger = this.burgerIcon === burgerIcon
+
+    if (isBurger) {
       return html``
     }
 
-    return html`<theme-toggle></theme-toggle>`
+    return html`
+      <ul class="vertical-navbar" @click="${this.burgerIconClick}">
+        <li><a href="#">Home</a></li>
+        <li><a href="#rules">Rules</a></li>
+        <li><a href="#signup">Signup</a></li>
+        <li><a href="#where">Where</a></li>
+        <theme-toggle></theme-toggle>
+      </ul>
+    `
+  }
+
+  private linkSection (): TemplateResult {
+    const listItems = html`
+      <ul class="navbar">
+        <li><a href="#">Home</a></li>
+        <li><a href="#rules">Rules</a></li>
+        <li><a href="#signup">Signup</a></li>
+        <li><a href="#where">Where</a></li>
+        <theme-toggle></theme-toggle>
+      </ul>
+    `
+
+    if (window.innerWidth > 768) {
+      return listItems
+    }
+
+    return html`<div class="burger-icon" @click=${this.burgerIconClick}>${this.burgerIcon}</div>`
   }
 
   protected render (): TemplateResult {
@@ -128,12 +70,8 @@ export class BaseLayout extends LitElement {
             cEDH Tournament
           </section>
 
-          <ul class="navbar">
-            <li><a href="#rules">Rules</a></li>
-            <li><a href="#signup">Signup</a></li>
-            <li><a href="#where">Where</a></li>
-            ${this.themeToggle()}
-          </ul>
+          ${this.linkSection()}
+          ${this.rightMenu()}
         </header>
 
         <main>
