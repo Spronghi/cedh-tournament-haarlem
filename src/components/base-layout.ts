@@ -31,14 +31,18 @@ export class BaseLayout extends LitElement {
         min-width: max-content;
       }
 
+      :host footer a {
+        color: white;
+      }
+
       :host ul.navbar li + li {
-        border-left: solid var(--secondary-light-color) 1px;
+        border-left: solid var(--text-color) 1px;
         padding-left: 10px;
         margin-left: 10px;
       }
 
       :host footer ul.navbar li + li {
-        border-left: solid var(--text-color) 1px;
+        border-left: solid var(white) 1px;
       }
 
       :host footer {
@@ -47,44 +51,46 @@ export class BaseLayout extends LitElement {
         display: flex;
         flex-direction: column;
         align-items: center;
+        color: white;
         background-color: var(--primary-color);
         padding: 1em 0;
       }
 
-      .title {
+      :host .title {
         padding-left: 1em;
       }
 
-      header .navbar {
+      :host header .navbar {
         padding-right: 1em !important;
       }
 
-      header section {
+      :host header section {
         display: flex;
         align-items: end;
       }
 
-      header .logo {
+      :host header .logo {
         width: 25px;
         height: 25px;
         padding-right: 5px
       }
 
-      @media(max-width: 600px){
-        header {
+      @media(max-width: 768px){
+        :host header {
           flex-direction: column;
         }
 
-        .title {
+        :host .title {
           padding-left: 0;
           margin-bottom: 10px
         }
       }
 
-      .disclaimer {
+      :host .disclaimer {
         font-size: 8px;
         text-align: center;
         margin-top: 10px;
+        padding: 0 3em;
       }
 
       :host a {
@@ -105,7 +111,7 @@ export class BaseLayout extends LitElement {
   }
 
   private themeToggle (): TemplateResult {
-    if (window.innerWidth <= 600) {
+    if (window.innerWidth <= 768) {
       return html``
     }
 
