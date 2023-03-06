@@ -31,7 +31,7 @@
         <header class="header">
           
           <section aria-label="title" class="title">
-            <img class="logo" src="/logo.png" />
+            <img class="logo" src="/cedh-tournament-haarlem/logo.png" />
             cEDH Tournament
           </section>
 
